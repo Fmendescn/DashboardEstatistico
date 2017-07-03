@@ -2,8 +2,8 @@
 
 //database
 define('DB_HOST', 'localhost');
-define('DB_USERNAME', 'your_username');
-define('DB_PASSWORD', 'your_password');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', 'sliceoflife');
 define('DB_NAME', 'dashboard');
 
 $login = $_POST['login'];
@@ -21,10 +21,24 @@ $mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
         if ($verifica->num_rows <= 0){
           echo"<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos');window.location.href='cadastro.html';</script>";
+          //Destrói
+        	session_destroy();
+
+        	//Limpa
+        	unset ($_SESSION['login']);
+        	unset ($_SESSION['senha']);
           die();
         }else{
+
+          session_start();
+
+          $_SESSION['login'] = $login;
+          $_SESSION['senha'] = $senha;
+
           setcookie("login",$login);
-          header("Location:index.php");;
+          header("Location:index.php");
+
+
         }
 
 

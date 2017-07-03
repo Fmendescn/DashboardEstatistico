@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 //database
 define('DB_HOST', '127.0.0.1');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '15232012');
+define('DB_PASSWORD', 'sliceoflife');
 define('DB_NAME', 'dashboard');
 
 //get connection
@@ -15,9 +15,11 @@ if(!$mysqli){
 	die("Connection failed: " . $mysqli->error);
 }
 
-//query to get data from the table
-$query = sprintf("SELECT id, professor_id FROM projeto where professor_id is not null limit 50");
 
+//query to get data from the table
+
+$query = sprintf("SELECT id, professor_id FROM projeto where professor_id is not null limit 50");
+//$query = sprintf("SELECT professor.nomerh, projeto.professor_id, projeto.id FROM projeto, professor where projeto.professor_id = professor.ID" );
 //execute query
 $result = $mysqli->query($query);
 

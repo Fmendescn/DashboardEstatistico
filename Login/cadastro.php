@@ -2,8 +2,8 @@
 
 //database
 define('DB_HOST', 'localhost');
-define('DB_USERNAME', 'your_username');
-define('DB_PASSWORD', 'your_password');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', 'sliceoflife');
 define('DB_NAME', 'dashboard');
 
 $login = $_POST['login'];
@@ -31,11 +31,12 @@ $result = $mysqli->query($query_select);
 
           $query_insert = "INSERT INTO usuarios (login,senha,permissao) VALUES('$login', '$senha',1)";
 
-          $insert = $mysqli->query($query_insert);
+          $insertq = $mysqli->query($query_insert);
 
-          die();
 
-          if($insert != 0){
+        //  die();
+
+          if($insertq != 0){
               echo"<script language='javascript' type='text/javascript'>alert('Usuário cadastrado com sucesso!');window.location.href='cadastro.html';</script>";
 
           }else{
