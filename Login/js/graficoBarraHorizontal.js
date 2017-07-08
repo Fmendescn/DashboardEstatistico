@@ -14,7 +14,7 @@ $(document).ready(function(){
 
 
 				if(id != data[i].ID){
-					Professor.push(data[i-1].nomerh + " " +data[i-1].professor_id);
+					Professor.push(data[i-1].nomerh + data[i-1].professor_id);
 					Projeto.push(cont);
 					cont = 1;
 					id = data[i].ID;
@@ -26,11 +26,6 @@ $(document).ready(function(){
 				}
 
 
-
-
-
-
-
 			}
 
 
@@ -38,7 +33,7 @@ $(document).ready(function(){
 				labels: Professor,
 				datasets : [
 					{
-						label: 'Id do Projeto ', 
+						label: 'Quantidade: ',
 						backgroundColor: 'rgba(100, 200, 200, 0.75)',
 						borderColor: 'rgba(200, 200, 200, 0.75)',
 						hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
@@ -51,7 +46,7 @@ $(document).ready(function(){
 			var ctx = $("#mycanvas");
 
 			var barGraph = new Chart(ctx, {
-				type: 'bar',
+				type: 'horizontalBar',
 				data: chartdata,
 				options: {
 					responsive: true

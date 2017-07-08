@@ -1,3 +1,22 @@
+<?php  $login_cookie = $_COOKIE['login']; ?>
+
+<?php
+session_start();
+
+//Caso o usuário não esteja autenticado, limpa os dados e redireciona
+if ( !isset($_SESSION['login']) and !isset($_SESSION['senha']) ) {
+	//Destrói
+	session_destroy();
+
+	//Limpa
+	unset ($_SESSION['login']);
+	unset ($_SESSION['senha']);
+
+	//Redireciona para a página de autenticação
+	header('location:cadastro.html');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,13 +28,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+
+    <title>Dasboard Estatistico</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -27,9 +50,17 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style type="text/css">
+      #chart-container {
+        width: 1000px;
+        height: auto;
+      }
+    </style>
+
 </head>
 
 <body>
+
 
     <div id="wrapper">
 
@@ -43,7 +74,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand" href="index.php">SB Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -57,8 +88,7 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading">
-                                            <strong>John Smith</strong>
+                                        <h5 class="media-heading">John Smith</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -73,8 +103,7 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading">
-                                            <strong>John Smith</strong>
+                                        <h5 class="media-heading"><strong>John Smith</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -89,8 +118,7 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading">
-                                            <strong>John Smith</strong>
+                                        <h5 class="media-heading"><strong>John Smith</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -126,12 +154,12 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">View All</a>
+                            <a href="logout.php">Logout</a>
                         </li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><?php echo" $login_cookie"; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -144,7 +172,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -152,41 +180,13 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li>
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
-                    </li>
-                    <li>
-                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
-                    </li>
-                    <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
-                    </li>
-                    <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-                    </li>
-                    <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="active">
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+                        <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i>Administrador</a>
                     </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -200,20 +200,126 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Blank Page
-                            <small>Subheading</small>
+                            Pizza<small></small>
                         </h1>
                         <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                            </li>
                             <li class="active">
-                                <i class="fa fa-file"></i> Blank Page
+                                <i class="fa fa-dashboard"></i> Dashboard
                             </li>
                         </ol>
                     </div>
                 </div>
                 <!-- /.row -->
+
+
+                <!-- /.row -->
+
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-9 text-right">
+																				<img src="analytics.png" style="margin-right: 15px;">
+                                        <div><h4>Gráfico Pizza</h4></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="graficoPizza.html">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Detalhes</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-green">
+
+														<div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-9 text-right">
+                                        <img src="graph.png" style="margin-right: 15px;">
+                                        <div><h4>Gráfico Coluna</h4></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="graficoColuna.php">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Detalhes</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-yellow">
+
+													<div class="panel-heading">
+															<div class="row">
+																	<div class="col-xs-9 text-right">
+																			<img src="bar-chart.png" style="margin-right: 15px;">
+																			<div><h4>Gráfico Barra</h4></div>
+																	</div>
+															</div>
+													</div>
+
+                            <a href="graficoBarra.php">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Detalhes</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-red">
+
+													<div class="panel-heading">
+															<div class="row">
+																	<div class="col-xs-9 text-right">
+																			<img src="circular-chart.png" style="margin-right: 15px;">
+																			<div><h4>Gráfico Donuts</h4></div>
+																	</div>
+															</div>
+													</div>
+
+                            <a href="graficoDonuts.php">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Detalhes</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+								<!-- Graphic Section-->
+								<h1 class="page-header">
+										<small>Grafico de Artigos</small>
+								</h1>
+
+								<div id="chart-container">
+										<canvas id="mycanvas"></canvas>
+								</div>
+
+
+
+								<!--/Graphic Section -->
 
             </div>
             <!-- /.container-fluid -->
@@ -229,6 +335,18 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
+
+		<!-- javascript -->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/Chart.min.js"></script>
+		<script type="text/javascript" src="js/graficoPizza.js"></script>
+
+
 
 </body>
 

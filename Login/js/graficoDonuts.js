@@ -38,7 +38,7 @@ $(document).ready(function(){
 				labels: Professor,
 				datasets : [
 					{
-						label: 'Id do Projeto ', 
+						label: 'Id do Projeto ',
 						backgroundColor: 'rgba(100, 200, 200, 0.75)',
 						borderColor: 'rgba(200, 200, 200, 0.75)',
 						hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
@@ -51,7 +51,7 @@ $(document).ready(function(){
 			var ctx = $("#mycanvas");
 
 			var barGraph = new Chart(ctx, {
-				type: 'bar',
+				type: 'doughnut',
 				data: chartdata,
 				options: {
 					responsive: true
