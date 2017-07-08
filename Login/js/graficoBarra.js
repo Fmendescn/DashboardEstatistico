@@ -6,23 +6,35 @@ $(document).ready(function(){
 			console.log(data);
 			var Professor = [];
 			var Projeto = [];
-
+			var cont = 0;
+			var id = data[0].ID;
 			for(var i in data) {
 
-				Professor.push("Prof " + data[i].professor_id);
-				Projeto.push(data[i].id);
+
+
+
+				if(id != data[i].ID){
+					Professor.push(data[i-1].nomerh + data[i-1].professor_id);
+					Projeto.push(cont);
+					cont = 1;
+					id = data[i].ID;
+
+				}else{
+
+					cont = cont +1;
+
+				}
+
+
 			}
 
-			for (var j in data){
-
-			}
 
 			var chartdata = {
 				labels: Professor,
 				datasets : [
 					{
-						label: 'Id do Projeto ',
-						backgroundColor: 'rgba(200, 200, 200, 0.75)',
+						label: 'Quantidade: ',
+						backgroundColor: 'rgba(100, 200, 200, 0.75)',
 						borderColor: 'rgba(200, 200, 200, 0.75)',
 						hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
 						hoverBorderColor: 'rgba(200, 200, 200, 1)',

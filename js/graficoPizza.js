@@ -15,7 +15,7 @@ $(document).ready(function(){
 			var tam_descricao = descricaohabilitacao.lenght;
 			var num_prof = id.lenght;
 			for (var j in descricaohabilitacao){
-				
+
 			}
 
 			var chartdata = {
@@ -36,7 +36,7 @@ $(document).ready(function(){
 			var ctx = $("#mycanvas");
 
 			var LineGraph = new Chart(ctx, {
-				type: 'bar',
+				type: 'pie',
 				data: chartdata
 			});
 		},
