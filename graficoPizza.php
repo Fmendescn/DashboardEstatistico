@@ -153,7 +153,9 @@ if ( !isset($_SESSION['login']) and !isset($_SESSION['senha']) ) {
                             <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
                         </li>
                         <li class="divider"></li>
-
+                        <li>
+                            <a href="logout.php">Logout</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -182,9 +184,8 @@ if ( !isset($_SESSION['login']) and !isset($_SESSION['senha']) ) {
                         <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="charts.php"><i class="fa fa-fw fa-bar-chart-o"></i>Pagina Admin</a>
+                        <a href="charts.php"><i class="fa fa-fw fa-bar-chart-o"></i>Página Admin</a>
                     </li>
-
 
                 </ul>
             </div>
@@ -199,7 +200,7 @@ if ( !isset($_SESSION['login']) and !isset($_SESSION['senha']) ) {
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Dashboard Estatístico<small></small>
+                            Gráfico Pizza<small></small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
@@ -222,20 +223,18 @@ if ( !isset($_SESSION['login']) and !isset($_SESSION['senha']) ) {
                                 <div class="row">
                                     <div class="col-xs-9 text-right">
 																				<img src="analytics.png" style="margin-right: 15px;">
-                                        <div>
-																					<h4>Gráfico Pizza</h4>
-																				</div>
+                                        <div><h4>Gráfico Pizza</h4></div>
                                     </div>
                                 </div>
                             </div>
 
-														 <a href="graficoPizza.php">
+                            <a href="graficoPizza.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">Detalhes</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                     <div class="clearfix"></div>
                                 </div>
-														</a>
+                            </a>
                         </div>
                     </div>
 
@@ -311,7 +310,7 @@ if ( !isset($_SESSION['login']) and !isset($_SESSION['senha']) ) {
 
 								<!-- Graphic Section-->
 								<h1 class="page-header">
-										<small>Gráfico de Artigos</small>
+										<small>Grafico de Artigos</small>
 								</h1>
 
 								<div id="chart-container">
@@ -345,7 +344,7 @@ if ( !isset($_SESSION['login']) and !isset($_SESSION['senha']) ) {
 		<!-- javascript -->
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/Chart.min.js"></script>
-		<script type="text/javascript" src="js/graficoBarra.js"></script>
+		<script type="text/javascript" src="js/graficoPizza.js"></script>
 
 
 

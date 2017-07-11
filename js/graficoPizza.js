@@ -1,47 +1,66 @@
 $(document).ready(function(){
 	$.ajax({
-		url : "http://localhost/formacaoprofs.php",
-		type : "GET",
-		success : function(data){
+		url: "http://localhost/projetoprof.php",
+		method: "GET",
+		success: function(data) {
 			console.log(data);
-
-			var id = [];
-			var descricaohabilitacao = [];
-
+			var Professor = [];
+			var Projeto = [];
+			var cont = 0;
+			var id = data[0].ID;
 			for(var i in data) {
-				id.push("Prof Id " + data[i].id);
-				descricaohabilitacao.push(data[i].descricaohabilitacao);
-			}
-			var tam_descricao = descricaohabilitacao.lenght;
-			var num_prof = id.lenght;
-			for (var j in descricaohabilitacao){
+
+
+
+
+				if(id != data[i].ID){
+					Professor.push(data[i-1].nomerh + " " +data[i-1].professor_id);
+					Projeto.push(cont);
+					cont = 1;
+					id = data[i].ID;
+
+				}else{
+
+					cont = cont +1;
+
+				}
+
+
+
+
+
+
 
 			}
+
 
 			var chartdata = {
-				labels: id,descricaohabilitacao,
-				datasets: [
-
+				labels: Professor,
+				datasets : [
 					{
-						label: "id",
-						backgroundColor: "rgba(211, 72, 54, 0.75)",
-						borderColor: "rgba(211, 72, 54, 1)",
-						pointHoverBackgroundColor: "rgba(211, 72, 54, 1)",
-						pointHoverBorderColor: "rgba(211, 72, 54, 1)",
-						data: descricaohabilitacao
+						label: 'Id do Projeto ',
+						backgroundColor: 'rgba(100, 200, 200, 0.75)',
+						borderColor: 'rgba(200, 200, 200, 0.75)',
+						hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
+						hoverBorderColor: 'rgba(200, 200, 200, 1)',
+						data: Projeto
 					}
 				]
 			};
 
 			var ctx = $("#mycanvas");
 
-			var LineGraph = new Chart(ctx, {
+			var barGraph = new Chart(ctx, {
 				type: 'pie',
-				data: chartdata
+				data: chartdata,
+				options: {
+					responsive: true
+
+				}
 			});
 		},
-		error : function(data) {
-
+		error: function(data) {
+			console.log(data);
 		}
 	});
 });

@@ -28,8 +28,7 @@ if ( !isset($_SESSION['login']) and !isset($_SESSION['senha']) ) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-
-    <title>Dasboard Estatistico</title>
+    <title>Dashboard Estatistico</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -50,17 +49,9 @@ if ( !isset($_SESSION['login']) and !isset($_SESSION['senha']) ) {
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <style type="text/css">
-      #chart-container {
-        width: 1000px;
-        height: auto;
-      }
-    </style>
-
 </head>
 
 <body>
-
 
     <div id="wrapper">
 
@@ -88,7 +79,7 @@ if ( !isset($_SESSION['login']) and !isset($_SESSION['senha']) ) {
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading">John Smith</strong>
+                                        <h5 class="media-heading"><strong>John Smith</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -153,11 +144,13 @@ if ( !isset($_SESSION['login']) and !isset($_SESSION['senha']) ) {
                             <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
                         </li>
                         <li class="divider"></li>
-
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><?php echo" $login_cookie"; ?> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><?php echo" $login_cookie"; ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -178,13 +171,12 @@ if ( !isset($_SESSION['login']) and !isset($_SESSION['senha']) ) {
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <li>
-                        <a href="charts.php"><i class="fa fa-fw fa-bar-chart-o"></i>Pagina Admin</a>
+                    <li class="active">
+                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
                     </li>
-
 
                 </ul>
             </div>
@@ -199,128 +191,178 @@ if ( !isset($_SESSION['login']) and !isset($_SESSION['senha']) ) {
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Dashboard Estatístico<small></small>
+                            Charts
                         </h1>
                         <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                            </li>
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Dashboard
+                                <i class="fa fa-bar-chart-o"></i> Charts
                             </li>
                         </ol>
                     </div>
                 </div>
                 <!-- /.row -->
 
-
+                <!-- Flot Charts -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header">Flot Charts</h2>
+                        <p class="lead">Flot is a pure JavaScript plotting library for jQuery, with a focus on simple usage, attractive looks and interactive features. For full usage instructions and documentation for Flot Charts, visit <a href="http://www.flotcharts.org/">http://www.flotcharts.org/</a>.</p>
+                    </div>
+                </div>
                 <!-- /.row -->
 
                 <div class="row">
-
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-12">
                         <div class="panel panel-primary">
-
                             <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-9 text-right">
-																				<img src="analytics.png" style="margin-right: 15px;">
-                                        <div>
-																					<h4>Gráfico Pizza</h4>
-																				</div>
-                                    </div>
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Line Graph Example with Tooltips</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="flot-chart">
+                                    <div class="flot-chart-content" id="flot-line-chart"></div>
                                 </div>
                             </div>
-
-														 <a href="graficoPizza.php">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Detalhes</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-														</a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-green">
-
-														<div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-9 text-right">
-                                        <img src="graph.png" style="margin-right: 15px;">
-                                        <div><h4>Gráfico Coluna</h4></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <a href="graficoColuna.php">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Detalhes</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-yellow">
-
-													<div class="panel-heading">
-															<div class="row">
-																	<div class="col-xs-9 text-right">
-																			<img src="bar-chart.png" style="margin-right: 15px;">
-																			<div><h4>Gráfico Barra</h4></div>
-																	</div>
-															</div>
-													</div>
-
-                            <a href="graficoBarra.php">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Detalhes</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-red">
-
-													<div class="panel-heading">
-															<div class="row">
-																	<div class="col-xs-9 text-right">
-																			<img src="circular-chart.png" style="margin-right: 15px;">
-																			<div><h4>Gráfico Donuts</h4></div>
-																	</div>
-															</div>
-													</div>
-
-                            <a href="graficoDonuts.php">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Detalhes</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
                         </div>
                     </div>
                 </div>
                 <!-- /.row -->
 
-								<!-- Graphic Section-->
-								<h1 class="page-header">
-										<small>Gráfico de Artigos</small>
-								</h1>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Pie Chart Example with Tooltips</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="flot-chart">
+                                    <div class="flot-chart-content" id="flot-pie-chart"></div>
+                                </div>
+                                <div class="text-right">
+                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Multiple Axes Line Graph Example with Tooltips and Raw Data</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="flot-chart">
+                                    <div class="flot-chart-content" id="flot-multiple-axes-chart"></div>
+                                </div>
+                                <div class="text-right">
+                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
 
-								<div id="chart-container">
-										<canvas id="mycanvas"></canvas>
-								</div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Moving Line Chart</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="flot-chart">
+                                    <div class="flot-chart-content" id="flot-moving-line-chart"></div>
+                                </div>
+                                <div class="text-right">
+                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Bar Graph with Tooltips</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="flot-chart">
+                                    <div class="flot-chart-content" id="flot-bar-chart"></div>
+                                </div>
+                                <div class="text-right">
+                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
 
+                <!-- Morris Charts -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header">Morris Charts</h2>
+                        <p class="lead">Morris.js is a very simple API for drawing line, bar, area and donut charts. For full usage instructions and documentation for Morris.js charts, visit <a href="http://morrisjs.github.io/morris.js/">http://morrisjs.github.io/morris.js/</a>.</p>
+                    </div>
+                </div>
+                <!-- /.row -->
 
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Area Line Graph Example with Tooltips</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="morris-area-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
 
-								<!--/Graphic Section -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Donut Chart Example</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="morris-donut-chart"></div>
+                                <div class="text-right">
+                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Line Graph Example with Tooltips</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="morris-line-chart"></div>
+                                <div class="text-right">
+                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Bar Graph Example</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="morris-bar-chart"></div>
+                                <div class="text-right">
+                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
 
             </div>
             <!-- /.container-fluid -->
@@ -342,12 +384,13 @@ if ( !isset($_SESSION['login']) and !isset($_SESSION['senha']) ) {
     <script src="js/plugins/morris/morris.min.js"></script>
     <script src="js/plugins/morris/morris-data.js"></script>
 
-		<!-- javascript -->
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/Chart.min.js"></script>
-		<script type="text/javascript" src="js/graficoBarra.js"></script>
-
-
+    <!-- Flot Charts JavaScript -->
+    <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
+    <script src="js/plugins/flot/jquery.flot.js"></script>
+    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="js/plugins/flot/flot-data.js"></script>
 
 </body>
 
